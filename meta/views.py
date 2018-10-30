@@ -87,6 +87,8 @@ class Meta(object):
         if keywords is None:
             kws = settings.DEFAULT_KEYWORDS
         else:
+            if settings.DEFAULT_KEYWORDS_I18N and not hasattr(keywords, '__iter__'):
+                keywords = [keywords]
             if not hasattr(keywords, '__iter__'):
                 # Not iterable
                 raise ValueError('Keywords must be an intrable')
