@@ -94,7 +94,10 @@ class Meta(object):
                 raise ValueError('Keywords must be an intrable')
             kws = [k for k in keywords]
             if settings.INCLUDE_KEYWORDS:
-                kws += settings.INCLUDE_KEYWORDS
+                ikws = settings.INCLUDE_KEYWORDS
+                if not hasattr(ikws, '__iter__'):
+                    ikws = [ikws]
+                kws += ikws
         seen = set()
         seen_add = seen.add
         self._keywords = [k for k in kws if k not in seen and not seen_add(k)]
