@@ -87,7 +87,7 @@ class Meta(object):
         if keywords is None:
             kws = settings.DEFAULT_KEYWORDS
         else:
-            if settings.DEFAULT_KEYWORDS_I18N and not hasattr(keywords, '__iter__'):
+            if settings.DEFAULT_KEYWORDS_I18N:
                 keywords = [keywords]
             if not hasattr(keywords, '__iter__'):
                 # Not iterable
@@ -95,7 +95,7 @@ class Meta(object):
             kws = [k for k in keywords]
             if settings.INCLUDE_KEYWORDS:
                 ikws = settings.INCLUDE_KEYWORDS
-                if not hasattr(ikws, '__iter__'):
+                if settings.INCLUDE_KEYWORDS_I18N:
                     ikws = [ikws]
                 kws += ikws
         seen = set()
